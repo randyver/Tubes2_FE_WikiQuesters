@@ -63,18 +63,18 @@ export default function Home() {
   return (
     <main className="flex flex-col justify-center items-center h-screen my-10">
       {/* kotak yg ditaro tengah */}
-      <div className="px-8">
+      <div className="px-8 md:px-12">
         <div className="flex flex-row">
-          <div className="relative">
+          <div className="relative mt-4 md:mb-10 md:mr-8">
             <Image
-              className="absolute w-4/5 -z-10"
+              className="absolute w-4/5 -z-10 md:w-48"
               src="/wikipedia.png"
               width={512}
               height={512}
               alt="wikipedia"
             />
             <Image
-              className="w-3/5 ml-12"
+              className="w-3/5 ml-12 md:w-32 md:ml-24"
               src="/finish.png"
               width={512}
               height={512}
@@ -82,16 +82,17 @@ export default function Home() {
             />
           </div>
           <div>
-            <p className="text-4xl text-[#DBE2EF] mb-4">WikiQuesters</p>
-            <p className="text-[#F9F7F7]">
+            <p className="text-4xl text-[#DBE2EF] mb-4 font-bold md:text-6xl font-mono">WikiQuesters</p>
+            <p className="text-[#F9F7F7] md:text-2xl">
               Solving WikiRace with IDS and BFS Algorithm
             </p>
           </div>
         </div>
-        <div className="flex flex-col gap-y-8 mt-10 text-[#F9F7F7]">
+        <div className="flex flex-col gap-y-8 mt-10 text-[#F9F7F7] md:text-lg">
           <div className="flex flex-col relative">
             <h2 className="mb-2">Fill in the box with the start page.</h2>
             <Input
+            className="md:text-lg"
               type="text"
               placeholder="Start page"
               value={startPage}
@@ -121,7 +122,7 @@ export default function Home() {
           <div className="flex flex-col relative">
             <h2 className="mb-2">Fill in the box with the target page.</h2>
             <Input
-              className=""
+              className="md:text-lg"
               type="text"
               placeholder="Target page"
               value={targetPage}
@@ -149,7 +150,7 @@ export default function Home() {
             </ul>
           </div>
           <Select>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full md:text-lg">
               <SelectValue placeholder="Algorithm" />
             </SelectTrigger>
             <SelectContent className="bg-white">
@@ -161,7 +162,7 @@ export default function Home() {
               </SelectItem>
             </SelectContent>
           </Select>
-          <Button className="w-full">Find!</Button>
+          <Button className="w-full md:text-lg">Find!</Button>
         </div>
       </div>
     </main>
