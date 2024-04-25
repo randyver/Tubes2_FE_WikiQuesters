@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-type MapItem = {
+export type MapItem = {
   [key: string]: string[];
 };
 
@@ -10,9 +10,10 @@ interface Props {
   mapData: MapItem[];
   startPage: string;
   targetPage: string;
+  showGraph: boolean;
 }
 
-const DrawGraph: React.FC<Props> = ({ mapData, startPage, targetPage }) => {
+const DrawGraph: React.FC<Props> = ({ mapData, startPage, targetPage, showGraph }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const maxChildren = Math.max(
@@ -125,7 +126,7 @@ const DrawGraph: React.FC<Props> = ({ mapData, startPage, targetPage }) => {
   }, [mapData, startPage, targetPage]);
 
   return (
-    <canvas
+    showGraph && <canvas
       ref={canvasRef}
       width={canvasWidth}
       height={canvasHeight}

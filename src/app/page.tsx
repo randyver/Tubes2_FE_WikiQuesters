@@ -55,11 +55,13 @@ export default function Home() {
   return (
     <main className="ml-20">
       <div className="items-center">
-        <DrawGraph
+        { <DrawGraph
           mapData={mapData}
           startPage={startPage}
           targetPage={targetPage}
-        />
+          showGraph={false}
+        />}
+        <WikiForm/>
       </div>
     </main>
   );
