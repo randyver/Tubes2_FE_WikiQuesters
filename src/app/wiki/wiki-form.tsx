@@ -15,53 +15,6 @@ import { z } from "zod";
 import {MapItem} from "./draw-graph"
 import DrawGraph from "./draw-graph";
 
-const mapData: MapItem[] = [
-  {
-    "https://en.wikipedia.org/wiki/Arabia": [
-      "https://en.wikipedia.org/wiki/Ostrich",
-    ],
-  },
-  {
-    "https://en.wikipedia.org/wiki/Arabian_Peninsula": [
-      "https://en.wikipedia.org/wiki/Ostrich",
-    ],
-  },
-  {
-    "https://en.wikipedia.org/wiki/Camel": [
-      "https://en.wikipedia.org/wiki/Ostrich_leather",
-      "https://en.wikipedia.org/wiki/Sub-Saharan_Africa",
-      "https://en.wikipedia.org/wiki/Arabian_Peninsula",
-      "https://en.wikipedia.org/wiki/Pliocene",
-      "https://en.wikipedia.org/wiki/Sahel",
-      "https://en.wikipedia.org/wiki/Arabia",
-    ],
-  },
-  { "https://en.wikipedia.org/wiki/Ostrich": [] },
-  {
-    "https://en.wikipedia.org/wiki/Ostrich_leather": [
-      "https://en.wikipedia.org/wiki/Ostrich",
-    ],
-  },
-  {
-    "https://en.wikipedia.org/wiki/Pliocene": [
-      "https://en.wikipedia.org/wiki/Ostrich",
-    ],
-  },
-  {
-    "https://en.wikipedia.org/wiki/Sahel": [
-      "https://en.wikipedia.org/wiki/Ostrich",
-    ],
-  },
-  {
-    "https://en.wikipedia.org/wiki/Sub-Saharan_Africa": [
-      "https://en.wikipedia.org/wiki/Ostrich",
-    ],
-  },
-];
-
-const StartPage = "https://en.wikipedia.org/wiki/Camel";
-const TargetPage = "https://en.wikipedia.org/wiki/Ostrich";
-
 // Define schema using Zod
 const formSchema = z.object({
   startPage: z.string().nonempty(),
@@ -126,7 +79,6 @@ export default function WikiForm() {
       MapData = parsedData as MapItem[]
       setShowGraph(true)
       console.log(MapData)
-      console.log(mapData)
     } catch (error) {
       console.error("Form submission error:", error);
     }
@@ -163,12 +115,8 @@ export default function WikiForm() {
   };
 
   console.log(MapData)
-  console.log(mapData)
-  console.log(`https://en.wikipedia.org/wiki/`+targetPage)
-  console.log(StartPage)
-  console.log(`https://en.wikipedia.org/wiki/`+startPage)
-  console.log(TargetPage)
-
+  console.log(targetPage)
+  console.log(startPage)
   return (
     <main>
       <main className="flex flex-col justify-center items-center h-screen my-10">
@@ -282,8 +230,8 @@ export default function WikiForm() {
       </main>
       { <DrawGraph
             mapData={MapData}
-            startPage={`https://en.wikipedia.org/wiki/` + encodeURIComponent(targetPage)}
-            targetPage={`https://en.wikipedia.org/wiki/` + encodeURIComponent(startPage)}
+            startPage={targetPage}
+            targetPage={startPage}
             showGraph={showGraph}
       />}
     </main>
