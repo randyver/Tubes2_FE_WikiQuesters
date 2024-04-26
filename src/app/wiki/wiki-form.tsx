@@ -36,6 +36,7 @@ export default function WikiForm() {
   const [startPageSuggestions, setStartPageSuggestions] = useState([]);
   const [targetPageSuggestions, setTargetPageSuggestions] = useState([]);
   const [showGraph, setShowGraph] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Function to handle suggestion selection for start page
   const handleStartSuggestionClick = (suggestion: string) => {
@@ -58,6 +59,8 @@ export default function WikiForm() {
   const handleSubmit = async () => {
     try {
       // Validate form data
+      setShowGraph(false);
+      setLoading(true);
       const formData = formSchema.parse({
         startPage,
         targetPage,
@@ -81,6 +84,8 @@ export default function WikiForm() {
       console.log(MapData)
     } catch (error) {
       console.error("Form submission error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -115,8 +120,8 @@ export default function WikiForm() {
   };
 
   console.log(MapData)
-  console.log(targetPage)
   console.log(startPage)
+  console.log(targetPage)
   return (
     <main>
       <main className="flex flex-col justify-center items-center h-screen my-10">
@@ -223,17 +228,17 @@ export default function WikiForm() {
             </Select>
 
             <Button className="w-full md:text-lg" onClick={handleSubmit}>
-              Find!
+              {loading ? "Loading..." : "Find!"}
             </Button>
           </div>
         </div>
       </main>
-      { <DrawGraph
+      <DrawGraph
             mapData={MapData}
-            startPage={targetPage}
-            targetPage={startPage}
+            startPage={startPage}
+            targetPage={targetPage}
             showGraph={showGraph}
-      />}
+      />
     </main>
   );
 }
