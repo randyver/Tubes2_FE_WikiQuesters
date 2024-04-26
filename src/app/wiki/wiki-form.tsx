@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { z } from "zod";
-import {MapItem} from "./draw-graph"
+import { MapItem } from "./draw-graph";
 import DrawGraph from "./draw-graph";
 
 // Define schema using Zod
@@ -27,7 +27,7 @@ interface CustomEvent<T> extends Event {
   detail: T;
 }
 
-let MapData : MapItem[] = []
+let MapData: MapItem[] = [];
 
 export default function WikiForm() {
   const [startPage, setStartPage] = useState("");
@@ -37,6 +37,9 @@ export default function WikiForm() {
   const [targetPageSuggestions, setTargetPageSuggestions] = useState([]);
   const [showGraph, setShowGraph] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [executionTime, setExecutionTime] = useState(null);
+  const [pathLength, setPathLength] = useState(null);
+  const [visitedCount, setVisitedCount] = useState(null);
 
   // Function to handle suggestion selection for start page
   const handleStartSuggestionClick = (suggestion: string) => {
@@ -69,19 +72,25 @@ export default function WikiForm() {
 
       // Send formData to backend
       console.log("Form submitted:", formData);
-      const response = await fetch('http://localhost:8080/api/submit', {
-        method: 'POST',
+      const response = await fetch("http://localhost:8080/api/submit", {
+        method: "POST",
         body: JSON.stringify(formData),
         headers: {
-          'Content-Type': 'application/json'
-        }
+          "Content-Type": "application/json",
+        },
       });
       let data = await response.json();
-      console.log(data.paths)
+      console.log(data.paths);
       const parsedData: any = JSON.parse(data.paths);
-      MapData = parsedData as MapItem[]
-      setShowGraph(true)
-      console.log(MapData)
+      MapData = parsedData as MapItem[];
+      setExecutionTime(data.time);
+      setPathLength(data.path_length);
+      setVisitedCount(data.visitedCount);
+      setShowGraph(true);
+      console.log(MapData);
+      console.log(data.execution_time);
+      console.log(data.path_length);
+      console.log(data.visited_count);
     } catch (error) {
       console.error("Form submission error:", error);
     } finally {
@@ -119,9 +128,6 @@ export default function WikiForm() {
     }
   };
 
-  console.log(MapData)
-  console.log(startPage)
-  console.log(targetPage)
   return (
     <main>
       <main className="flex flex-col justify-center items-center h-screen my-10">
@@ -234,11 +240,18 @@ export default function WikiForm() {
         </div>
       </main>
       <DrawGraph
-            mapData={MapData}
-            startPage={startPage}
-            targetPage={targetPage}
-            showGraph={showGraph}
+        mapData={MapData}
+        startPage={startPage}
+        targetPage={targetPage}
+        showGraph={showGraph}
       />
+      {showGraph && (
+        <div className="text-[#F9F7F7] md:text-lg mt-8">
+          <p>Execution Time: {executionTime} ms</p>
+          <p>Visited Count: {visitedCount}</p>
+          <p>Path Length: {pathLength}</p>
+        </div>
+      )}
     </main>
   );
 }
