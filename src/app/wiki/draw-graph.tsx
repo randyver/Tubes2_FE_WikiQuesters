@@ -21,10 +21,14 @@ const DrawGraph: React.FC<Props> = ({ mapData, startPage, targetPage, showGraph 
   );
   const offsetX = 200;
   const offsetY = 100;
-  const canvasWidth = offsetX * maxChildren;
+  let canvasWidth = offsetX * maxChildren;
   const canvasHeight = 1000;
   const startX = canvasWidth / 2;
   const startY = 100;
+  if(canvasWidth <= 800){
+    canvasWidth = 800;
+  }
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -32,7 +36,7 @@ const DrawGraph: React.FC<Props> = ({ mapData, startPage, targetPage, showGraph 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    ctx.fillStyle = 'lightblue';
+    ctx.fillStyle = 'rgba(185, 215, 234, 1)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     const visited = new Set<string>();
     const nodePositions = new Map<string, { x: number; y: number }>();

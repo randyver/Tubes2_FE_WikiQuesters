@@ -129,8 +129,8 @@ export default function WikiForm() {
   };
 
   return (
-    <main>
-      <main className="flex flex-col justify-center items-center h-screen my-10">
+    <main className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center h-screen my-10">
         <div className="px-8 md:px-12">
           <div className="flex flex-row">
             <div className="relative mt-4 md:mb-10 md:mr-8">
@@ -150,15 +150,15 @@ export default function WikiForm() {
               />
             </div>
             <div>
-              <p className="text-4xl text-[#DBE2EF] mb-4 font-bold md:text-6xl font-mono">
+              <p className="text-4xl text-[#112D4E] mb-4 font-bold md:text-6xl font-mono">
                 WikiQuesters
               </p>
-              <p className="text-[#F9F7F7] md:text-2xl">
+              <p className="text-[#112D4E] md:text-2xl">
                 Solving WikiRace with IDS and BFS Algorithm
               </p>
             </div>
           </div>
-          <div className="flex flex-col gap-y-8 mt-10 text-[#F9F7F7] md:text-lg">
+          <div className="flex flex-col gap-y-8 mt-10 text-[#112D4E] md:text-lg">
             <div className="flex flex-col relative">
               <h2 className="mb-2">Fill in the box with the start page.</h2>
               <Input
@@ -220,7 +220,7 @@ export default function WikiForm() {
               </ul>
             </div>
             <Select onValueChange={(value) => handleAlgorithmSelect(value)}>
-              <SelectTrigger className="w-full md:text-lg">
+              <SelectTrigger className="w-full md:text-lg border-[#112D4E]">
                 <SelectValue placeholder="Algorithm" />
               </SelectTrigger>
               <SelectContent className="bg-white">
@@ -238,20 +238,25 @@ export default function WikiForm() {
             </Button>
           </div>
         </div>
-      </main>
-      <DrawGraph
-        mapData={MapData}
-        startPage={startPage}
-        targetPage={targetPage}
-        showGraph={showGraph}
-      />
-      {showGraph && (
-        <div className="text-[#F9F7F7] md:text-lg mt-8">
-          <p>Execution Time: {executionTime} ms</p>
-          <p>Visited Count: {visitedCount}</p>
-          <p>Path Length: {pathLength}</p>
-        </div>
-      )}
+      </div>
+      <div className="flex flex-col items-center justify-center mb-20">
+        {showGraph && (
+          <p className="mb-10 text-3xl font-bold font-mono text-[#112D4E]">Here is the result!</p>
+        )}
+        <DrawGraph
+          mapData={MapData}
+          startPage={startPage}
+          targetPage={targetPage}
+          showGraph={showGraph}
+        />
+        {showGraph && (
+          <div className="flex gap-x-40 font-mono text-[#112D4E] md:text-lg mt-10">
+            <p>Execution Time: {executionTime} ms</p>
+            <p>Visited Count: {visitedCount}</p>
+            <p>Path Length: {pathLength}</p>
+          </div>
+        )}
+      </div>
     </main>
   );
 }
