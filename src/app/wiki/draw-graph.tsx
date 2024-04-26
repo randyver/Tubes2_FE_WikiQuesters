@@ -32,6 +32,8 @@ const DrawGraph: React.FC<Props> = ({ mapData, startPage, targetPage, showGraph 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    ctx.fillStyle = 'lightblue';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     const visited = new Set<string>();
     const nodePositions = new Map<string, { x: number; y: number }>();
 
@@ -42,7 +44,7 @@ const DrawGraph: React.FC<Props> = ({ mapData, startPage, targetPage, showGraph 
       ctx.beginPath();
       ctx.moveTo(start.x, start.y);
       ctx.lineTo(end.x, end.y);
-      ctx.strokeStyle = "black";
+      ctx.strokeStyle = "rgba(0, 0, 0, 0.25)";
       ctx.lineWidth = 2;
       ctx.stroke();
     };
@@ -59,7 +61,7 @@ const DrawGraph: React.FC<Props> = ({ mapData, startPage, targetPage, showGraph 
       ctx.font = "20px Arial";
       ctx.fillStyle = "black";
       ctx.textAlign = "center";
-      ctx.fillText(name, x, y + 5);
+      ctx.fillText(name, x, y - 40);
     };
 
     const getTitleFromUrl = (url: string): string => {
