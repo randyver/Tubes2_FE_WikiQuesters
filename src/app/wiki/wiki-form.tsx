@@ -41,6 +41,7 @@ export default function WikiForm() {
   const [executionTime, setExecutionTime] = useState(null);
   const [pathLength, setPathLength] = useState(null);
   const [visitedCount, setVisitedCount] = useState(null);
+  const [pathCount, setPathCount] = useState(null);
 
   // Function to handle suggestion selection for start page
   const handleStartSuggestionClick = (suggestion: string) => {
@@ -88,6 +89,7 @@ export default function WikiForm() {
       setPathLength(data.path_length);
       setVisitedCount(data.visitedCount);
       setShowGraph(true);
+      setPathCount(data.pathCount);
       console.log(MapData);
       console.log(data.execution_time);
       console.log(data.path_length);
@@ -238,6 +240,7 @@ export default function WikiForm() {
               Here is the result!
             </p>
             <div className="flex flex-row gap-x-6 font-mono text-[#112D4E] md:text-lg my-10">
+              <p>Number of Solutions Found: {pathCount}</p>
               <p>Execution Time: {executionTime} ms</p>
               <p>Visited Count: {visitedCount}</p>
               <p>Path Length: {pathLength}</p>

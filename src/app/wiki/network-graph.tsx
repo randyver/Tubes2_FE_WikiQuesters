@@ -1,5 +1,6 @@
 "use client";
 
+import { path } from "d3";
 import { useState, useEffect } from "react";
 import React from "react";
 import Graph from "react-vis-ts";
@@ -11,6 +12,8 @@ type MapItem = {
 type stringToIntMap = {
   [key: string]: number;
 };
+
+let PathCount : number = 0;
 
 interface WikiResponse {
   query: {
@@ -130,7 +133,6 @@ async function convertMapToGraph(
   queue.push(nodeIdMap[startPage]);
   let newQueue: number[] = [];
   let depthMap = new Map<number, number>();
-  // let pathTo = new Map<number, number>()
 
   let depth: number = 0;
   while (queue.length != 0 && queue[0] != nodeIdMap[endPage]) {
@@ -139,9 +141,6 @@ async function convertMapToGraph(
       depthMap.set(currentId, depth);
       for (let edge of graph.edges) {
         if (edge.from == currentId) {
-          // if (pathTo.has(edge.to)){
-          //   pathTo.set(edge.to, pathTo.get(edge.to) + pathTo.get(edge.from))
-          // }
           newQueue.push(edge.to);
         }
       }
