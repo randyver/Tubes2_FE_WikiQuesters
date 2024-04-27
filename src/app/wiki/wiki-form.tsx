@@ -131,26 +131,17 @@ export default function WikiForm() {
 
   return (
     <main className="flex flex-col justify-center items-center">
-      <div className="flex flex-col justify-center items-center h-screen my-10">
+      <div className="flex flex-col justify-center items-center h-screen">
         <div className="px-8 md:px-12">
-          <div className="flex flex-row">
-            <div className="relative mt-4 md:mb-10 md:mr-8">
-              <Image
-                className="absolute w-4/5 -z-10 md:w-48"
-                src="/wikipedia.png"
-                width={512}
-                height={512}
-                alt="wikipedia"
-              />
-              <Image
-                className="w-3/5 ml-12 md:w-32 md:ml-24"
-                src="/finish.png"
-                width={512}
-                height={512}
-                alt="finish"
-              />
-            </div>
-            <div>
+          <div className="flex flex-row relative mt-4 md:mb-10 md:mr-8">
+            <Image
+              className="w-4/5 md:w-48"
+              src="/wikirace.png"
+              width={500}
+              height={500}
+              alt="wikirace"
+            />
+            <div className="flex flex-col ml-4 mt-6">
               <p className="text-4xl text-[#112D4E] mb-4 font-bold md:text-6xl font-mono">
                 WikiQuesters
               </p>
@@ -242,19 +233,23 @@ export default function WikiForm() {
       </div>
       <div className="flex flex-col items-center justify-center mb-20">
         {showGraph && (
-          <p className="mb-10 text-3xl font-bold font-mono text-[#112D4E]">Here is the result!</p>
-        )}
-        <NetworkGraph
-          mapData={MapData}
-          startPage={startPage}
-          targetPage={targetPage}
-          showGraph={showGraph}
-        />
-        {showGraph && (
-          <div className="flex gap-x-40 font-mono text-[#112D4E] md:text-lg mt-10">
-            <p>Execution Time: {executionTime} ms</p>
-            <p>Visited Count: {visitedCount}</p>
-            <p>Path Length: {pathLength}</p>
+          <div className="mx-8 flex flex-col items-center">
+            <p className="mb-10 text-3xl font-bold font-mono text-[#112D4E]">
+              Here is the result!
+            </p>
+            <div className="flex flex-row gap-x-6 font-mono text-[#112D4E] md:text-lg my-10">
+              <p>Execution Time: {executionTime} ms</p>
+              <p>Visited Count: {visitedCount}</p>
+              <p>Path Length: {pathLength}</p>
+            </div>
+            <div className="border-2 border-[#112D4E] bg-[#EEF1FF]">
+              <NetworkGraph
+                mapData={MapData}
+                startPage={startPage}
+                targetPage={targetPage}
+                showGraph={showGraph}
+              />
+            </div>
           </div>
         )}
       </div>
