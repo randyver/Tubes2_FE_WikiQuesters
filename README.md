@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tugas Besar 2 Strategi Algoritma 2024 | WikiQuesters
 
-## Getting Started
+## Description
 
-First, run the development server:
+This repository contains the front-end code for the WikiQuesters website, which solves the WikiRace game using BFS and IDS algorithmic approaches.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
+1. Determine paths that are solutions to WikiRace
+2. Display path visualization with a graph
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Algorithm Explained
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Breadth First Search (BFS)
+The BFS algorithm is used to traverse or search a graph in a very systematic way. BFS starts traversal from the root, then traverses all nodes at the current level before moving to nodes at the next level. Each Wikipedia page is considered a node in the graph, and each link leading to another page is considered an edge. BFS starts from the initial page, then explores all pages that can be accessed directly through links on that page (i.e., all adjacent nodes). This process continues until the destination page is found or all pages have been explored.
 
-## Learn More
+### Iterative Depth Search (IDS)
+IDS is a combined search strategy that combines the advantages of BFS and DFS (Depth-First Search). IDS first performs DFS up to a certain depth, then increases the depth after each iteration until the maximum depth is reached. IDS can be used to find the shortest path between two Wikipedia pages. IDS starts the search from the initial page and performs DFS up to a certain depth. If the destination page is not found, the search depth is increased. This process continues until the destination page is found or the maximum depth is reached.
 
-To learn more about Next.js, take a look at the following resources:
+## Tech Stack
+1. Typescript
+2. Tailwind CSS
+3. Next JS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Requirements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Here are the requirements needed to run the program:
+* Node.js
+* npm
+  ```sh
+  npm install npm@latest -g
+  ``` 
+  
+## Installation
 
-## Deploy on Vercel
+1. Clone the repo
+   ```sh
+   git clone https://github.com/randyver/Tubes2_FE_WikiQuesters
+   ```
+2. Change directory to the root of the cloned local repository using
+   ```sh
+   cd Tubes2_FE_WikiQuesters
+   ```
+3. Run program using
+   ```sh
+   npm run dev
+   ```
+4. The results of the program can be opened at [http://localhost:3000](http://localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   
+## Authors
+| NIM      | Name                         |
+|----------|------------------------------|
+| 13522067 | Randy Verdian                |
+| 13522099 | Abdul Rafi Radityo Hutomo    |
+| 13522107 | Rayendra Althaf Taraka Noor  |
