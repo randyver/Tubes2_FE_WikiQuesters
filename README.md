@@ -39,7 +39,7 @@ Here are the requirements needed to run the program:
    ```
 2. Change directory to the root of the cloned local repository using
    ```sh
-   cd Tubes2_FE_WikiQuesters
+   cd Tubes2_FE_WikiQuesters/src
    ```
 3. Run program using
    ```sh
