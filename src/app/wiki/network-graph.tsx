@@ -109,7 +109,7 @@ async function convertMapToGraph(mapData : MapItem[], startPage : string, endPag
   queue.push(nodeIdMap[startPage])
   let newQueue: number[] = []
   let depthMap = new Map<number, number>()
-  let pathTo = new Map<number, number>()
+  // let pathTo = new Map<number, number>()
 
   let depth: number = 0
   while(queue.length != 0 && queue[0] != nodeIdMap[endPage]){
@@ -118,9 +118,9 @@ async function convertMapToGraph(mapData : MapItem[], startPage : string, endPag
       depthMap.set(currentId, depth)
       for (let edge of graph.edges){
         if (edge.from == currentId){
-          if (pathTo.has(edge.to)){
-            pathTo.set(edge.to, pathTo.get(edge.to) + pathTo.get(edge.from))
-          }
+          // if (pathTo.has(edge.to)){
+          //   pathTo.set(edge.to, pathTo.get(edge.to) + pathTo.get(edge.from))
+          // }
           newQueue.push(edge.to)
         }
       }
