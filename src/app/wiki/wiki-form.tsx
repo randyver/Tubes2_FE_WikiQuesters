@@ -14,6 +14,7 @@ import Image from "next/image";
 import { z } from "zod";
 import { MapItem } from "./draw-graph";
 import DrawGraph from "./draw-graph";
+import NetworkGraph from "./network-graph";
 
 // Define schema using Zod
 const formSchema = z.object({
@@ -243,7 +244,7 @@ export default function WikiForm() {
         {showGraph && (
           <p className="mb-10 text-3xl font-bold font-mono text-[#112D4E]">Here is the result!</p>
         )}
-        <DrawGraph
+        <NetworkGraph
           mapData={MapData}
           startPage={startPage}
           targetPage={targetPage}
